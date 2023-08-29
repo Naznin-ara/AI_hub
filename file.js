@@ -23,7 +23,7 @@ const allDataLoad = (data,show) => {
     data = data.slice(0,7);
   }
 if(show){
-  showbtn.classList.add('hidden');
+  showbtn.classList.add('hidden')
 }
   
   for (let item of data) {
@@ -77,7 +77,7 @@ const showmodal = (item) =>{
  
 section.classList.remove('hidden');
 div.textContent = '';
-  div.innerHTML = `<div id="modal" class=" flex justify-center items-center gap-2 w-[700px] h-[500px] rounded-lg fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-slate-400 ">
+  div.innerHTML = `<div id="modal" class=" flex justify-center items-center gap-2 w-[700px] h-[500px] rounded-lg fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-gray-300 ">
   <div class="px-6 py-4 flex flex-col justify-center items-center w-[350px] h-[400px] bg-red-100 rounded-md border-red-400 border-[1px]">
    <h1 class="text-lg font-bold mb-4">${item.description}</h1>
    <div class="flex justify-center items-center gap-2">
