@@ -1,17 +1,19 @@
 let count =0;
-
+let fetchedTools =[];
+let show1;
 const loadData = async (show) => {
   let res = await fetch("https://openapi.programming-hero.com/api/ai/tools");
   let datas = await res.json();
   let alldata = datas.data.tools;
-  
+  // fetchedTools = datas.data.tools;
  
   allDataLoad(alldata,show);
-sortByDate(alldata);
+
 };
 
 const allDataLoad = (data,show) => {
   const container = document.getElementById("container");
+  container.innerHTML ="";
   const showbtn = document.getElementById('showbtn');
   if(data.length>6){
     showbtn.classList.remove('hidden');
@@ -25,6 +27,11 @@ const allDataLoad = (data,show) => {
 if(show){
   showbtn.classList.add('hidden')
 }
+
+fetchedTools = data;
+
+show1 = show;
+
   
   for (let item of data) {
     
@@ -135,20 +142,16 @@ const closemodal =()=>{
   const section = document.getElementById('modaldiv');
   section.classList.add('hidden');
 }
-const sortByDate =(dates) =>{
-    let date = new Date();
-//  for(let item of dates){
-//     let itemdate = item.published_in;
-//     let datearray = itemdate.split('/').map(Number);
-//     datearray.sort();
-//     console.log(datearray.sort());
-// }
-    let newarr = dates.map(e =>{
-      let itemdate = e.published_in;
-      let datearray = itemdate.split('/').map(Number);
-      return datearray;
-    })
-console.log(newarr);
+const sortByDate =() =>{
+ let arr = fetchedTools.sort((a,b) =>{
+  let date1 = a.published_in.split('/').join('-');
+  let date2 =b.published_in.split('/').join('-');
+  return new Date(date1) - new Date(date2);
+})
+
+  
+allDataLoad(arr,show1);
+console.log(arr);
 }
 
 loadData();
